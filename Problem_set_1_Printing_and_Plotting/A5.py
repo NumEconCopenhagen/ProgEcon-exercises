@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt # baseline module
 colors = plt.rcParams['axes.prop_cycle'].by_key()['color']
 
-def x2_func(x1,u,alpha=0.5,beta=0.5):
+def x2_func(x1,u,alpha=0.5,beta=1.0):
     return ((u**(-beta)-alpha*x1**(-beta))/(1-alpha))**(-1/beta)
 
 def plot(alpha,betas,uvals):

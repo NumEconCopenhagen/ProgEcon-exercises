@@ -23,10 +23,10 @@ def run(mu=0.08, sigma=0.20, n_worlds=100_000, w=0.5, seed=2026):
     rng = np.random.default_rng(seed)
 
     # a. a few representative correlations
-    print(f"single stock: mean={mu:.4f}, std={sigma:.4f}")
+    print(f'single stock: mean={mu:.4f}, std={sigma:.4f}')
     for eta in [-0.5, 0.0, 0.5, 1.0]:
         m, sd = portfolio_std(rng, eta, mu, sigma, n_worlds, w)
-        print(f"eta={eta:+.1f}: portfolio mean={m:.4f}, std={sd:.4f}")
+        print(f'eta={eta:+.1f}: portfolio mean={m:.4f}, std={sd:.4f}')
 
     # b. sweep correlation and compare with the analytical formula
     rhos = np.linspace(-1.0, 1.0, 21)

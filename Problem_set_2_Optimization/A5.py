@@ -2,6 +2,7 @@ import numpy as np
 
 from grid_solve import print_solution
 from A2 import x2_from_x1
+from A1 import utility_ces
 
 def make_foc(alpha,beta,I,p1,p2):
     """Return the FOC f(x1) and its analytic derivative fprime(x1) for the CES problem.
@@ -30,8 +31,7 @@ def newton(f, df, x0, I, p1, tol=1e-12, max_iter=200):
         fx, dfx = f(x), df(x)
 
         x_new = x - fx/dfx
-        x_new = 0.5*(x + 0.5*I/p1)
-        
+
         if abs(x_new - x) < tol:
             return x_new, it
         
@@ -47,9 +47,10 @@ def solve_with_newton(alpha,beta,I,p1,p2,x0=None,do_print=True):
 
     x1, it = newton(f, fprime, x0, I, p1)
     x2 = x2_from_x1(x1,I,p1,p2)
-    
+    u  = utility_ces(x1,x2,alpha,beta)
+
     if do_print:
-        print_solution(x1,x2,f(x1),I,p1,p2)
+        print_solution(x1,x2,u,I,p1,p2)
         print(f'iterations = {it}')
 
 def solve_with_newton_numderiv(alpha,beta,I,p1,p2,x0=None,Delta=1e-8,do_print=True):
@@ -62,7 +63,8 @@ def solve_with_newton_numderiv(alpha,beta,I,p1,p2,x0=None,Delta=1e-8,do_print=Tr
     
     x1, it = newton(f, fprime_num, x0, I, p1)
     x2 = x2_from_x1(x1,I,p1,p2)
-    
+    u  = utility_ces(x1,x2,alpha,beta)
+
     if do_print:
-        print_solution(x1,x2,f(x1),I,p1,p2)
+        print_solution(x1,x2,u,I,p1,p2)
         print(f'iterations = {it}')

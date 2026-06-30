@@ -30,19 +30,21 @@ def plot_pareto(b=2.0, size=10_000, seed=2026):
 
     # a. histogram of the draws
     axes[0].hist(np.log(x), bins=100, density=True)
-    axes[0].set_title(f"Pareto histogram (b={b})")
-    axes[0].set_xlabel("x")
-    axes[0].set_ylabel("density")
+    axes[0].set_title(f'Pareto histogram (b={b})')
+    axes[0].set_xlabel('x')
+    axes[0].set_ylabel('density')
 
     # b. tail: empirical fraction of draws above x, P(X > x), on log-log axes
     xs = np.sort(x)
     frac_above = 1.0 - np.arange(1, xs.size + 1) / xs.size
-    axes[1].loglog(xs, frac_above)
-    axes[1].set_title("Tail: P(X > x), log-log")
-    axes[1].set_xlabel("x")
-    axes[1].set_ylabel("P(X > x)")
+    axes[1].loglog(xs, frac_above, label='stochastic draws')
+    axes[1].loglog(xs, (xs ** -b), 'r--', label=f'theoretical: x^-{b}')
+    axes[1].legend()
+    axes[1].set_title('Tail: P(X > x), log-log')
+    axes[1].set_xlabel('x')
+    axes[1].set_ylabel('P(X > x)')
 
     fig.tight_layout()
     plt.show()
 
-    print(f"mean = {x.mean():.3f}, max = {x.max():.1f}, share > 10 = {(x > 10).mean():.4f}")
+    print(f'mean = {x.mean():.3f}, max = {x.max():.1f}, share > 10 = {(x > 10).mean():.4f}')

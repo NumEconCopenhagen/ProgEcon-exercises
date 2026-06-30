@@ -43,9 +43,9 @@ def price_shock_sensitivity(u_func, alpha, I, p1, p2, betas=None):
 
     # c. table of results
     print(f"{'beta':>6}{'%dx1':>10}{'%dx2':>10}{'%du':>10}")
-    print("-"*36)
+    print('-'*36)
     for k in range(len(betas)):
-        print(f"{betas[k]:>6.2f}{d_x1[k]:>10.2f}{d_x2[k]:>10.2f}{d_u[k]:>10.2f}")
+        print(f'{betas[k]:>6.2f}{d_x1[k]:>10.2f}{d_x2[k]:>10.2f}{d_u[k]:>10.2f}')
 
     # d. plots
     fig, axs = plt.subplots(1, 2, figsize=(11, 4.5))

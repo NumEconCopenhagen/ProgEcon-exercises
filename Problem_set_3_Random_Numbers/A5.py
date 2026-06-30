@@ -7,10 +7,10 @@ def make_P(s, f):
       f : job-finding probability P(U -> E)
     """
 
-    assert 0.0 <= s <= 1.0 and 0.0 <= f <= 1.0, "Probabilities must be in [0,1]."
+    assert 0.0 <= s <= 1.0 and 0.0 <= f <= 1.0, 'Probabilities must be in [0,1].'
     P = np.array([[1.0 - s, s],
                   [f,       1.0 - f]], dtype=float)
-    assert np.allclose(P.sum(axis=1), 1.0, atol=1e-12), "Rows must sum to 1."
+    assert np.allclose(P.sum(axis=1), 1.0, atol=1e-12), 'Rows must sum to 1.'
     return P
 
 def steady_state_unemployment(s, f):
@@ -46,7 +46,7 @@ def run(s=0.02, f=0.30, T=200, pi0=(1.0, 0.0)):
     pi = simulate_distribution(P, np.array(pi0, dtype=float), T)
     u_path = pi[:, 1]  # unemployment share each period
 
-    print(f"P =\n{P}")
-    print(f"First 10 unemployment shares: {np.round(u_path[:10], 4)}")
-    print(f"Deterministic steady-state unemployment: {u_path[-1]:.4f}")
-    print(f"Theoretical s/(s+f):                     {steady_state_unemployment(s, f):.4f}")
+    print(f'P =\n{P}')
+    print(f'First 10 unemployment shares: {np.round(u_path[:10], 4)}')
+    print(f'Deterministic steady-state unemployment: {u_path[-1]:.4f}')
+    print(f'Theoretical s/(s+f):                     {steady_state_unemployment(s, f):.4f}')

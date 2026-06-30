@@ -20,7 +20,7 @@ def compare_optimizers(u_func,alpha,beta,I,p1,p2,eps=1e-10):
     x0 = np.array([I/(2*p1)])
 
     # b. SLSQP (bounded)
-    print("\nSLSQP (bounded)")
+    print('\nSLSQP (bounded)')
     t0 = time.perf_counter()
     res_slsqp = optimize.minimize(obj, x0=x0, args=(alpha, beta),
                                   bounds=[(eps, I/p1 - eps)], method='SLSQP')
@@ -33,7 +33,7 @@ def compare_optimizers(u_func,alpha,beta,I,p1,p2,eps=1e-10):
     print(f'time = {(t1-t0)*1e3:.1f} ms')
 
     # d. Nelder-Mead (unconstrained; same penalized objective)
-    print("\nNelder-Mead (unconstrained)")
+    print('\nNelder-Mead (unconstrained)')
     t0 = time.perf_counter()
     res_nm = optimize.minimize(obj, x0=x0, args=(alpha, beta), method='Nelder-Mead')
     t1 = time.perf_counter()

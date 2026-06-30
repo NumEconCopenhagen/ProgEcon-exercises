@@ -28,6 +28,6 @@ def run(T=1_000, s=0.02, f=0.30, s0=0, seed=7):
 
     path, draws = simulate_worker_shocks(T, s, f, s0, seed)
 
-    print(f"First 10 shocks (uniforms): {np.round(draws[:10], 3)}")
-    print(f"First 10 states (0=E,1=U):  {path[:11].tolist()}")
-    print(f"Share of time in U (single worker): {path.mean():.4f}")
+    print(f'First 10 shocks (uniforms): {np.round(draws[:10], 3)}')
+    print(f'First 10 states (0=E,1=U):  {path[:11].tolist()}')
+    print(f'Share of time in U (single worker): {path.mean():.4f}')

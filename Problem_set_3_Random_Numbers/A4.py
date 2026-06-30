@@ -37,13 +37,13 @@ def plot_unemployment_rate(u_rate, s, f, burn_in=0):
     pi_star = s / (s + f)
 
     fig, ax = plt.subplots(figsize=(8, 5))
-    ax.plot(t, u_rate, label="cross-sectional unemployment rate")
-    ax.axhline(pi_star, ls="--", color="black", label=r"theoretical $s/(s+f)$")
+    ax.plot(t, u_rate, label='cross-sectional unemployment rate')
+    ax.axhline(pi_star, ls='--', color='black', label=r'theoretical $s/(s+f)$')
     if burn_in > 0:
-        ax.axvspan(0, burn_in, color="grey", alpha=0.2, label="burn-in")
-    ax.set_xlabel("period t")
-    ax.set_ylabel("unemployment rate")
-    ax.set_title("Many workers: unemployment rate over time")
+        ax.axvspan(0, burn_in, color='grey', alpha=0.2, label='burn-in')
+    ax.set_xlabel('period t')
+    ax.set_ylabel('unemployment rate')
+    ax.set_title('Many workers: unemployment rate over time')
     ax.legend()
     plt.show()
 
@@ -56,9 +56,9 @@ def run(T=10_000, N=20_000, s=0.02, f=0.30, s0=0, seed=7, burn_in=1000):
 
     states, U, u_rate = simulate_many_workers_shocks(T, N, s, f, s0, seed)
 
-    print(f"First 10 unemployment rates: {np.round(u_rate[:10], 4)}")
-    print(f"Last 10 unemployment rates:  {np.round(u_rate[-10:], 4)}")
-    print(f"Average unemployment rate after burn-in (t>{burn_in}): {u_rate[burn_in:].mean():.4f}")
-    print(f"Theoretical s/(s+f):         {s/(s+f):.4f}")
+    print(f'First 10 unemployment rates: {np.round(u_rate[:10], 4)}')
+    print(f'Last 10 unemployment rates:  {np.round(u_rate[-10:], 4)}')
+    print(f'Average unemployment rate after burn-in (t>{burn_in}): {u_rate[burn_in:].mean():.4f}')
+    print(f'Theoretical s/(s+f):         {s/(s+f):.4f}')
 
     plot_unemployment_rate(u_rate, s, f, burn_in=burn_in)

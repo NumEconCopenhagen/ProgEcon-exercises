@@ -24,13 +24,13 @@ def rng_warmup(seed=2025, n=5):
     z_next = rng.standard_normal(n)
 
     # d. report
-    print(f"u1:            {u1}")
-    print(f"u2 (match u1): {u2}")
-    print(f"z1:            {z1}")
-    print(f"z2 (match z1): {z2}")
+    print(f'u1:            {u1}')
+    print(f'u2 (match u1): {u2}')
+    print(f'z1:            {z1}')
+    print(f'z2 (match z1): {z2}')
     print()
-    print(f"u_next (different): {u_next}")
-    print(f"z_next (different): {z_next}")
+    print(f'u_next (different): {u_next}')
+    print(f'z_next (different): {z_next}')
 
     assert np.allclose(u1, u2) and np.allclose(z1, z2)
     assert not np.allclose(u1, u_next) and not np.allclose(z1, z_next)
