@@ -1,12 +1,14 @@
 import numpy as np
 
-# Single worker hit by random shocks (0=E, 1=U)
 def simulate_worker_shocks(T, s, f, s0=0, seed=42):
+    """Single worker hit by random shocks each period (0=E, 1=U).
+
+    - In E: separate to U with probability s
+    - In U: find a job to E with probability f
+
+    Returns the state path (length T+1) and the uniform draws used.
     """
-    States: 0=E, 1=U.
-    - In E: separate to U with prob s
-    - In U: find a job to E with prob f
-    """
+
     rng = np.random.default_rng(seed)
     states = np.empty(T + 1, dtype=np.int8)
     states[0] = s0
@@ -21,14 +23,11 @@ def simulate_worker_shocks(T, s, f, s0=0, seed=42):
 
     return states, uniforms
 
+def run(T=1_000, s=0.02, f=0.30, s0=0, seed=7):
+    """Simulate one worker and report the share of time spent unemployed."""
 
-T = 1_000
-s = 0.02   # separation probability
-f = 0.30   # job-finding probability
-s0 = 0     # start employed
-seed = 7
+    path, draws = simulate_worker_shocks(T, s, f, s0, seed)
 
-path, draws = simulate_worker_shocks(T, s, f, s0, seed)
-print("First 10 shocks (uniforms):", np.round(draws[:10], 3))
-print("First 10 states (0=E,1=U):", path[:11].tolist())   
-print(f"Share of time in U (single worker): {path.mean():.3f}")
+    print(f"First 10 shocks (uniforms): {np.round(draws[:10], 3)}")
+    print(f"First 10 states (0=E,1=U):  {path[:11].tolist()}")
+    print(f"Share of time in U (single worker): {path.mean():.4f}")

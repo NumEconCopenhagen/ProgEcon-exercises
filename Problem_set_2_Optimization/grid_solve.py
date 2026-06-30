@@ -1,11 +1,6 @@
 # All modules used within a module must be imported locally
 import numpy as np
 from types import SimpleNamespace
-# You need to respecify the u_func, because the module does not share scope with the notebook. 
-# That is, the module functions cannot see that u_func was defined in the notebook when find_best_choice is called
-#def u_func(x1,x2,alpha=0.50):
-#    return x1**alpha * x2**(1-alpha)
-
 
 def find_best_choice(u_func,alpha,I,p1,p2,N1,N2,do_print=True):
     
@@ -48,11 +43,11 @@ def find_best_choice(u_func,alpha,I,p1,p2,N1,N2,do_print=True):
 
 # function for printing the solution
 def print_solution(x1,x2,u,I,p1,p2):
-    print(f'x1 = {x1:.4f}')
-    print(f'x2 = {x2:.4f}')
-    print(f'u  = {u:.4f}')
+    print(f'x1 = {x1:.5f}')
+    print(f'x2 = {x2:.5f}')
+    print(f'u  = {u:.5f}')
     print(f'I-p1*x1-p2*x2 = {I-p1*x1-p2*x2:.8f}')
-    print(f'x1*p1/I = {x1*p1/I:.4f}')
+    print(f'x1*p1/I = {x1*p1/I:.5f}')
 
 
 def find_best_choice_monotone(u_func,alpha,I,p1,p2,N,do_print=True):
