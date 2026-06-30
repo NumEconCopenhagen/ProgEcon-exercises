@@ -1,5 +1,5 @@
-#LyX 2.4 created this file. For more info see https://www.lyx.org/
-\lyxformat 620
+#LyX 2.5 created this file. For more info see https://www.lyx.org/
+\lyxformat 643
 \begin_document
 \begin_header
 \save_transient_properties true
@@ -9,34 +9,30 @@
 \usepackage{hyperref}
 \hypersetup{colorlinks=true,urlcolor=blue}
 \date{}
-
 \usepackage{xcolor}
 \usepackage{listings}
-
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{background}{HTML}{F5F5F5}
 \definecolor{keyword}{HTML}{4B69C6}
 \definecolor{string}{HTML}{448C27}
 \definecolor{comment}{HTML}{448C27}
-
 \usepackage{inconsolata}
 \lstdefinestyle{mystyle}{
     commentstyle=\color{comment},
     keywordstyle=\color{keyword},
     stringstyle=\color{string},
     basicstyle=\ttfamily,
-    breakatwhitespace=false,         
-    breaklines=true,                 
-    captionpos=b,                    
-    keepspaces=true,                                    
-    numbersep=5pt,                  
-    showspaces=false,                
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbersep=5pt,
+    showspaces=false,
     showstringspaces=false,
     showtabs=false,
     tabsize=4,
 	showlines=true
 }
-
 \lstset{style=mystyle}
 % Added by lyx2lyx
 \setlength{\parskip}{\smallskipamount}
@@ -68,6 +64,7 @@
 \bibtex_command default
 \index_command default
 \float_placement H
+\float_alignment class
 \paperfontsize 11
 \spacing single
 \use_hyperref false
@@ -90,11 +87,19 @@
 \use_indices false
 \paperorientation portrait
 \suppress_date false
-\justification true
-\use_refstyle 0
+\justification default
+\crossref_package prettyref
 \use_formatted_ref 0
 \use_minted 0
 \use_lineno 0
+\backgroundcolor none
+\fontcolor none
+\notefontcolor lightgray
+\boxbgcolor red
+\table_border_color default
+\table_odd_row_color default
+\table_even_row_color default
+\table_alt_row_colors_start 1
 \index Index
 \shortcut idx
 \color #008000
@@ -105,8 +110,8 @@
 \bottommargin 3cm
 \secnumdepth 3
 \tocdepth 3
-\paragraph_separation indent
-\paragraph_indentation default
+\paragraph_separation skip
+\defskip halfline
 \is_math_indent 0
 \math_numbering_side default
 \quotes_style english
@@ -124,6 +129,7 @@
 \html_be_strict false
 \docbook_table_output 0
 \docbook_mathml_prefix 1
+\docbook_mathml_version 0
 \end_header
 
 \begin_body
@@ -140,7 +146,6 @@ Problem Set 0 - Getting Started
 status open
 
 \begin_layout Plain Layout
-
 
 \backslash
 vspace{-3mm}
@@ -232,7 +237,6 @@ status open
 
 \begin_layout Plain Layout
 
-
 \backslash
 begin{lstlisting}[language=Python,basicstyle=
 \backslash
@@ -246,27 +250,22 @@ color{background}]
 \end_layout
 
 \begin_layout Plain Layout
-
 a = 1
 \end_layout
 
 \begin_layout Plain Layout
-
 b = 2 
 \end_layout
 
 \begin_layout Plain Layout
-
 c = a + b
 \end_layout
 
 \begin_layout Plain Layout
-
 print(c)
 \end_layout
 
 \begin_layout Plain Layout
-
 
 \backslash
 end{lstlisting}
@@ -308,30 +307,12 @@ Restart-and-Run-All
 short cut will be very useful)
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Standard
 
-\series bold
-Git:
-
-\series default
- Download the course content from 
 \emph on
-VSCode
-\emph default
- using 
-\emph on
-git
-\emph default
- as explained 
-\begin_inset CommandInset href
-LatexCommand href
-name "here"
-target "https://sites.google.com/view/numeconcph-progecon/guides/git"
-literal "false"
-
-\end_inset
-
-.
+The following tasks is designed to be done after Lecture 3,
+ but you can experiment with it before.
+ Task 2 and 4 are repeated on Problem_set_0.ipynb.
 \end_layout
 
 \begin_layout Section
@@ -350,7 +331,7 @@ Consider the code snippets below.
 \begin_layout Itemize
 
 \series bold
-slicing
+indexing and references
 \end_layout
 
 \begin_deeper
@@ -359,7 +340,6 @@ slicing
 status open
 
 \begin_layout Plain Layout
-
 
 \backslash
 begin{lstlisting}[language=Python,basicstyle=
@@ -374,22 +354,22 @@ color{background}]
 \end_layout
 
 \begin_layout Plain Layout
-
-x = [0,1,2,3,4,5]
+x = [1,2,3]
 \end_layout
 
 \begin_layout Plain Layout
-
-print(x[:2])
+y = x
 \end_layout
 
 \begin_layout Plain Layout
-
-print(x[2:])
+y[-1] = 4
 \end_layout
 
 \begin_layout Plain Layout
+print(x)
+\end_layout
 
+\begin_layout Plain Layout
 
 \backslash
 end{lstlisting}
@@ -404,7 +384,7 @@ end{lstlisting}
 \begin_layout Itemize
 
 \series bold
-references
+slicing
 \end_layout
 
 \begin_deeper
@@ -413,7 +393,6 @@ references
 status open
 
 \begin_layout Plain Layout
-
 
 \backslash
 begin{lstlisting}[language=Python,basicstyle=
@@ -428,27 +407,18 @@ color{background}]
 \end_layout
 
 \begin_layout Plain Layout
-
-x = [1,2,3]
+x = [0,1,2,3,4,5]
 \end_layout
 
 \begin_layout Plain Layout
-
-y = x
+print(x[:2])
 \end_layout
 
 \begin_layout Plain Layout
-
-y[-1] = 4
+print(x[2:])
 \end_layout
 
 \begin_layout Plain Layout
-
-print(x)
-\end_layout
-
-\begin_layout Plain Layout
-
 
 \backslash
 end{lstlisting}
@@ -473,7 +443,6 @@ status open
 
 \begin_layout Plain Layout
 
-
 \backslash
 begin{lstlisting}[language=Python,basicstyle=
 \backslash
@@ -487,23 +456,19 @@ color{background}]
 \end_layout
 
 \begin_layout Plain Layout
-
 for i in range(5):
 \end_layout
 
 \begin_layout Plain Layout
-
 	if i >= 2:
  break
 \end_layout
 
 \begin_layout Plain Layout
-
 	print(i)
 \end_layout
 
 \begin_layout Plain Layout
-
 
 \backslash
 end{lstlisting}
@@ -528,7 +493,6 @@ status open
 
 \begin_layout Plain Layout
 
-
 \backslash
 begin{lstlisting}[language=Python,basicstyle=
 \backslash
@@ -542,23 +506,19 @@ color{background}]
 \end_layout
 
 \begin_layout Plain Layout
-
 for i in range(5):
 \end_layout
 
 \begin_layout Plain Layout
-
 	if i == 2:
  continue
 \end_layout
 
 \begin_layout Plain Layout
-
 	print(i)
 \end_layout
 
 \begin_layout Plain Layout
-
 
 \backslash
 end{lstlisting}
@@ -583,7 +543,6 @@ status open
 
 \begin_layout Plain Layout
 
-
 \backslash
 begin{lstlisting}[language=Python,basicstyle=
 \backslash
@@ -597,47 +556,38 @@ color{background}]
 \end_layout
 
 \begin_layout Plain Layout
-
 x = 3
 \end_layout
 
 \begin_layout Plain Layout
-
 if x > 3:
 \end_layout
 
 \begin_layout Plain Layout
-
 	print('too big')
 \end_layout
 
 \begin_layout Plain Layout
-
 elif x < 1:
 \end_layout
 
 \begin_layout Plain Layout
-
 	print('too small')
 \end_layout
 
 \begin_layout Plain Layout
-
 else:
 \end_layout
 
 \begin_layout Plain Layout
-
 	print('just right')
 \end_layout
 
 \begin_layout Plain Layout
-
 	
 \end_layout
 
 \begin_layout Plain Layout
-
 
 \backslash
 end{lstlisting}
@@ -662,7 +612,6 @@ status open
 
 \begin_layout Plain Layout
 
-
 \backslash
 begin{lstlisting}[language=Python,basicstyle=
 \backslash
@@ -676,57 +625,46 @@ color{background}]
 \end_layout
 
 \begin_layout Plain Layout
-
 a = 1
 \end_layout
 
 \begin_layout Plain Layout
-
 def f(x):
 \end_layout
 
 \begin_layout Plain Layout
-
 	return x+a # a is global variable
 \end_layout
 
 \begin_layout Plain Layout
-
 def g(x,a=1):
 \end_layout
 
 \begin_layout Plain Layout
-
 	return x+a # a is local variable
 \end_layout
 
 \begin_layout Plain Layout
-
 print(f(1))
 \end_layout
 
 \begin_layout Plain Layout
-
 print(g(1))
 \end_layout
 
 \begin_layout Plain Layout
-
 a = 2
 \end_layout
 
 \begin_layout Plain Layout
-
 print(f(1))
 \end_layout
 
 \begin_layout Plain Layout
-
 print(g(1))
 \end_layout
 
 \begin_layout Plain Layout
-
 
 \backslash
 end{lstlisting}
@@ -748,7 +686,7 @@ end{lstlisting}
 \begin_layout Itemize
 
 \series bold
-numpy
+dictionaries
 \end_layout
 
 \begin_deeper
@@ -757,7 +695,6 @@ numpy
 status open
 
 \begin_layout Plain Layout
-
 
 \backslash
 begin{lstlisting}[language=Python,basicstyle=
@@ -772,52 +709,132 @@ color{background}]
 \end_layout
 
 \begin_layout Plain Layout
+d = {'a':
+ 1,
+ 'b':
+ 2}
+\end_layout
 
-import numpy as np
+\begin_layout Plain Layout
+for key in d:
+\end_layout
+
+\begin_layout Plain Layout
+	d[key] = d[key]*2
+\end_layout
+
+\begin_layout Plain Layout
+print(d['a'] + d['b'])
+\end_layout
+
+\begin_layout Plain Layout
+print('c' in d)
 \end_layout
 
 \begin_layout Plain Layout
 
-x = np.array ([1,2,3])
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+list comprehension and zip
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+begin{lstlisting}[language=Python,basicstyle=
+\backslash
+linespread{1.3}
+\backslash
+ttfamily
+\backslash
+footnotesize,numbers=left,frame=single,backgroundcolor=
+\backslash
+color{background}]
+\end_layout
+
+\begin_layout Plain Layout
+a = [1,2,3]
+\end_layout
+
+\begin_layout Plain Layout
+b = [4,5,6]
+\end_layout
+
+\begin_layout Plain Layout
+c = [i+j for i,j in zip(a,b)]
+\end_layout
+
+\begin_layout Plain Layout
+print(c)
 \end_layout
 
 \begin_layout Plain Layout
 
-y = x
+\backslash
+end{lstlisting}
 \end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+floating point numbers
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
 
 \begin_layout Plain Layout
 
-x += 1
+\backslash
+begin{lstlisting}[language=Python,basicstyle=
+\backslash
+linespread{1.3}
+\backslash
+ttfamily
+\backslash
+footnotesize,numbers=left,frame=single,backgroundcolor=
+\backslash
+color{background}]
 \end_layout
 
 \begin_layout Plain Layout
-
-print(y)
+print(0.1 + 0.2 == 0.3)
 \end_layout
 
 \begin_layout Plain Layout
-
-x[:] = x + 1
+import math
 \end_layout
 
 \begin_layout Plain Layout
-
-print(y)
+print(math.isclose(0.1 + 0.2,
+ 0.3))
 \end_layout
 
 \begin_layout Plain Layout
-
-x = x + 1
-\end_layout
-
-\begin_layout Plain Layout
-
-print(y)
-\end_layout
-
-\begin_layout Plain Layout
-
 
 \backslash
 end{lstlisting}
@@ -842,6 +859,74 @@ status open
 
 \begin_layout Plain Layout
 
+\backslash
+begin{lstlisting}[language=Python,basicstyle=
+\backslash
+linespread{1.3}
+\backslash
+ttfamily
+\backslash
+footnotesize,numbers=left,frame=single,backgroundcolor=
+\backslash
+color{background}]
+\end_layout
+
+\begin_layout Plain Layout
+class SquareClass:
+\end_layout
+
+\begin_layout Plain Layout
+	def __init__(self,length,width):
+\end_layout
+
+\begin_layout Plain Layout
+		self.length = length
+\end_layout
+
+\begin_layout Plain Layout
+		self.width = width
+\end_layout
+
+\begin_layout Plain Layout
+	def size(self):
+\end_layout
+
+\begin_layout Plain Layout
+		return self.length*self.width
+\end_layout
+
+\begin_layout Plain Layout
+square = SquareClass(2,2)
+\end_layout
+
+\begin_layout Plain Layout
+print(square.size())
+\end_layout
+
+\begin_layout Plain Layout
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+numpy - view and copies I
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
 
 \backslash
 begin{lstlisting}[language=Python,basicstyle=
@@ -856,47 +941,152 @@ color{background}]
 \end_layout
 
 \begin_layout Plain Layout
+import numpy as np
+\end_layout
 
-class SquareClass:
+\begin_layout Plain Layout
+x = np.array ([1,2,3])
+\end_layout
+
+\begin_layout Plain Layout
+y = x
+\end_layout
+
+\begin_layout Plain Layout
+x += 1
+\end_layout
+
+\begin_layout Plain Layout
+print(y)
+\end_layout
+
+\begin_layout Plain Layout
+x[:] = x + 1
+\end_layout
+
+\begin_layout Plain Layout
+print(y)
+\end_layout
+
+\begin_layout Plain Layout
+x = x + 1
+\end_layout
+
+\begin_layout Plain Layout
+print(y)
 \end_layout
 
 \begin_layout Plain Layout
 
-	def __init__(self,length,width):
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+numpy - view and copies II
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+begin{lstlisting}[language=Python,basicstyle=
+\backslash
+linespread{1.3}
+\backslash
+ttfamily
+\backslash
+footnotesize,numbers=left,frame=single,backgroundcolor=
+\backslash
+color{background}]
+\end_layout
+
+\begin_layout Plain Layout
+import numpy as np
+\end_layout
+
+\begin_layout Plain Layout
+A = np.array([0,1,2,3,4])
+\end_layout
+
+\begin_layout Plain Layout
+B = A[1:4]
+\end_layout
+
+\begin_layout Plain Layout
+B[:] = 0
+\end_layout
+
+\begin_layout Plain Layout
+print(A)
 \end_layout
 
 \begin_layout Plain Layout
 
-		self.length = length
+\backslash
+end{lstlisting}
 \end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+numpy - broadcasting
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
 
 \begin_layout Plain Layout
 
-		self.width = width
+\backslash
+begin{lstlisting}[language=Python,basicstyle=
+\backslash
+linespread{1.3}
+\backslash
+ttfamily
+\backslash
+footnotesize,numbers=left,frame=single,backgroundcolor=
+\backslash
+color{background}]
 \end_layout
 
 \begin_layout Plain Layout
-
-	def size(self):
+import numpy as np
 \end_layout
 
 \begin_layout Plain Layout
-
-		return self.length*self.width
+A = np.array([[1,2,3],[4,5,6]])
 \end_layout
 
 \begin_layout Plain Layout
-
-square = SquareClass(2,2)
+b = np.array([10,20,30])
 \end_layout
 
 \begin_layout Plain Layout
-
-print(square.size())
+print(A + b)
 \end_layout
 
 \begin_layout Plain Layout
-
 
 \backslash
 end{lstlisting}
@@ -928,7 +1118,6 @@ Type in the code below and wait for the copilot to suggest the next lines of cod
 status open
 
 \begin_layout Plain Layout
-
 []
 \end_layout
 
@@ -943,7 +1132,6 @@ Accept:
 status open
 
 \begin_layout Plain Layout
-
 []
 \end_layout
 
@@ -959,7 +1147,6 @@ status open
 
 \begin_layout Plain Layout
 
-
 \backslash
 begin{lstlisting}[language=Python,basicstyle=
 \backslash
@@ -973,22 +1160,18 @@ color{background}]
 \end_layout
 
 \begin_layout Plain Layout
-
 import numpy as np
 \end_layout
 
 \begin_layout Plain Layout
-
 x = np.array([2,5,10,2,4])
 \end_layout
 
 \begin_layout Plain Layout
-
 # sort and print
 \end_layout
 
 \begin_layout Plain Layout
-
 
 \backslash
 end{lstlisting}
@@ -1014,6 +1197,159 @@ You can toggle the right hand side chat window by pressing Ctrl+Alt+B.
 
 plot x vs log(x)
 \begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Task 4:
+ Putting it together
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Grid search (numpy):
+
+\series default
+ Create a numpy array
+\family typewriter
+ x
+\family default
+ of 100 evenly spaced points between 0.01 and 10 (use
+\family typewriter
+ np.linspace
+\family default
+).
+ Let utility be 
+\begin_inset Formula $u(x)=\sqrt{x}$
+\end_inset
+
+.
+ Without writing a loop,
+ find and print the value of
+\family typewriter
+ x
+\family default
+ for which 
+\begin_inset Formula $u(x)$
+\end_inset
+
+ is closest to 2.
+ Hint:
+ combine
+\family typewriter
+ np.abs
+\family default
+ and
+\family typewriter
+ np.argmin
+\family default
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Broadcasting (numpy):
+
+\series default
+ Let
+\family typewriter
+ p = np.array([1,2,5])
+\family default
+ be prices and
+\family typewriter
+ q = np.array([10,20,30,40])
+\family default
+ be quantities.
+ Without any loop,
+ construct the 
+\begin_inset Formula $4\times3$
+\end_inset
+
+ matrix
+\family typewriter
+ E
+\family default
+ where
+\family typewriter
+ E[i,j] = q[i]*p[j]
+\family default
+.
+ Print
+\family typewriter
+ E
+\family default
+ and
+\family typewriter
+ E.shape
+\family default
+.
+ Hint:
+ use
+\family typewriter
+ None
+\family default
+ to add a new axis,
+ e.g.
+\family typewriter
+q[:,None]
+\family default
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+A class:
+
+\series default
+ Write a class
+\family typewriter
+ ConsumerClass
+\family default
+ that stores income
+\family typewriter
+ I
+\family default
+ and prices
+\family typewriter
+ p1
+\family default
+,
+\family typewriter
+p2
+\family default
+ as attributes (set in
+\family typewriter
+__init__
+\family default
+ with sensible defaults that can be overridden).
+ Add a method
+\family typewriter
+ demand(alpha)
+\family default
+ that returns the Cobb-Douglas demands
+\begin_inset Formula $(x_{1},x_{2})=(\alpha I/p_{1},(1-\alpha)I/p_{2})$
+\end_inset
+
+ as a tuple,
+ and a
+\family typewriter
+__str__
+\family default
+ method that returns a readable summary.
+ Create two consumers with different incomes and print their demands for 
+\begin_inset Formula $\alpha=0.5$
 \end_inset
 
 .
