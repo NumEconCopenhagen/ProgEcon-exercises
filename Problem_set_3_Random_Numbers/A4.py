@@ -1,13 +1,35 @@
 import numpy as np
 
-def make_P_2state(s, f):
-    """
-    Return the 2x2 transition matrix for states 0=E (employed), 1=U (unemployed).
-      s : separation probability  P(E -> U)
-      f : job-finding probability P(U -> E)
-    """
-    assert 0.0 <= s <= 1.0 and 0.0 <= f <= 1.0, "Probabilities must be in [0,1]."
-    P = np.array([[1.0 - s, s],
-                  [f,       1.0 - f]], dtype=float)
-    assert np.allclose(P.sum(axis=1), 1.0, atol=1e-12), "Rows must sum to 1."
-    return P
+T = 10_000
+N = 20_000
+s = 0.02   # separation probability (E->U)
+f = 0.30   # job-finding probability (U->E)
+s0 = 0
+seed = 7
+
+def simulate_many_workers_shocks(T, N, s, f, s0=0, seed=42):
+    rng = np.random.default_rng(seed)
+    states = np.full((T + 1, N), s0, dtype=np.int8)
+    U = rng.random((T, N))  # one draw per worker per period
+
+    for t in range(T):
+        in_E = (states[t] == 0)
+        in_U = ~in_E
+
+        # Start from "stay"
+        states[t+1] = states[t]
+
+        # E -> U on separation with prob s
+        states[t+1, in_E] = np.where(U[t, in_E] < s, 1, 0)
+
+        # U -> E on job finding with prob f
+        states[t+1, in_U] = np.where(U[t, in_U] < f, 0, 1)
+
+    u_rate = states.mean(axis=1)  # share unemployed each period
+    return states, U, u_rate
+
+N = 20_000
+states, U, u_rate = simulate_many_workers_shocks(T, N, s, f, s0, seed)
+print("First 10 unemployment rates:", np.round(u_rate[:10], 3))
+print("Last 10 unemployment rates :", np.round(u_rate[-10:], 3))
+print("Overall unemployment rate :", np.mean(u_rate))
