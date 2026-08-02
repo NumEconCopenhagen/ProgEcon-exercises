@@ -188,11 +188,6 @@ literal "false"
 \emph on
 Anaconda
 \emph default
-,
- 
-\emph on
-git
-\emph default
  and 
 \emph on
 VSCode.
@@ -1103,13 +1098,18 @@ Task 3:
  Try Copilot
 \end_layout
 
+\begin_layout Standard
+Ensure c
+\end_layout
+
 \begin_layout Enumerate
 
 \series bold
 Automatic:
  
 \series default
-Type in the code below and wait for the copilot to suggest the next lines of code.
+Create empty notebook.
+ Type in the code below and wait for the copilot to suggest the next lines of code.
 \end_layout
 
 \begin_deeper
@@ -1200,6 +1200,17 @@ plot x vs log(x)
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Snooze copilot:
+ 
+\series default
+Hover over the Copilot icon to the right in the Status Bar and pres
+\family typewriter
+ Snooze.
 \end_layout
 
 \begin_layout Standard
@@ -1301,8 +1312,9 @@ Broadcasting (numpy):
 \family default
  to add a new axis,
  e.g.
+
 \family typewriter
-q[:,None]
+ q[:,None]
 \family default
 .
 \end_layout
@@ -1326,8 +1338,9 @@ A class:
  p1
 \family default
 ,
+
 \family typewriter
-p2
+ p2
 \family default
  as attributes (set in
 \family typewriter
@@ -1338,7 +1351,7 @@ __init__
 \family typewriter
  demand(alpha)
 \family default
- that returns the Cobb-Douglas demands
+ that returns the Cobb-Douglas demands 
 \begin_inset Formula $(x_{1},x_{2})=(\alpha I/p_{1},(1-\alpha)I/p_{2})$
 \end_inset
 
