@@ -1098,10 +1098,6 @@ Task 3:
  Try Copilot
 \end_layout
 
-\begin_layout Standard
-Ensure c
-\end_layout
-
 \begin_layout Enumerate
 
 \series bold
@@ -1205,7 +1201,7 @@ plot x vs log(x)
 \begin_layout Enumerate
 
 \series bold
-Snooze copilot:
+Snooze:
  
 \series default
 Hover over the Copilot icon to the right in the Status Bar and pres
