@@ -303,11 +303,36 @@ short cut will be very useful)
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+vspace{4mm}
+\end_layout
+
+\end_inset
+
 
 \emph on
 The following tasks is designed to be done after Lecture 3,
  but you can experiment with it before.
  Task 2 and 4 are repeated on Problem_set_0.ipynb.
+\emph default
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+vspace{2mm}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -983,6 +1008,13 @@ end{lstlisting}
 \end_layout
 
 \end_deeper
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
 \begin_layout Itemize
 
 \series bold
