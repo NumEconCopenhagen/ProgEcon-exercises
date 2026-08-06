@@ -1,3 +1,5 @@
+np.random.seed(1999) # same seed as in the problem set -> same data
+
 N = 100
 mydata = {}
 mydata['id'] = range(N)
