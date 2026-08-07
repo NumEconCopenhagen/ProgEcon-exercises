@@ -1,55 +1,81 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from A1 import f, k_star_no_growth
-from A2_1 import k_star_with_g
-from A3_1 import k_star_gn
+plt.rcParams.update({'axes.grid':True,'grid.color':'black','grid.alpha':'0.25','grid.linestyle':'-'})
+plt.rcParams.update({'font.size':14})
 
-# --- parameters (edit as desired) -------------------------------------------
-alpha = 1/3
-s     = 0.20
-delta = 0.08
-g     = 0.02
-n     = 0.01
+colors = plt.rcParams['axes.prop_cycle'].by_key()['color']
 
-# --- compute steady states and choose common grid ---------------------------
-k_ng  = k_star_no_growth(alpha, s, delta)
-k_g   = k_star_with_g(alpha, s, delta, g)
-k_gn  = k_star_gn(alpha, s, delta, g, n)
+from A3 import SolowModelGrowth
 
-kmax  = max(4.0, 2.5*max(k_ng, k_g, k_gn))
-kgrid = np.linspace(1e-6, kmax, 600)
-invest = s * f(kgrid, alpha)  # same across panels
+def run(T=100,t_switch=30,n_new=0.02):
+    """ compare a baseline with a permanent fall in population growth
 
-# --- plotting ---------------------------------------------------------------
-fig, axes = plt.subplots(3, 1, figsize=(6, 9), sharex=True)
+    Args:
 
-# (1) no growth
-axes[0].plot(kgrid, invest, label=r"$s\,f(k)$")
-axes[0].plot(kgrid, delta * kgrid, label=r"$\delta\,k$")
-axes[0].axvline(k_ng, ls="--", label=fr"$k^*={k_ng:.3f}$")
-axes[0].set_title("Solow — no growth")
-axes[0].set_ylabel("investment / break-even")
-axes[0].legend(loc="best")
+        T (int): number of periods
+        t_switch (int): the period where population growth falls
+        n_new (float): the new growth rate of the population
 
-# (2) tech only
-axes[1].plot(kgrid, invest, label=r"$s\,f(k)$")
-axes[1].plot(kgrid, (delta + g) * kgrid, label=r"$(\delta+g)\,k$")
-axes[1].axvline(k_g, ls="--", label=fr"$k^*={k_g:.3f}$")
-axes[1].set_title("Solow — tech growth")
-axes[1].set_ylabel("investment / break-even")
-axes[1].legend(loc="best")
+    """
 
-# (3) tech + population
-be_gn = ((1 + g)*(1 + n) - (1 - delta)) * kgrid
-axes[2].plot(kgrid, invest, label=r"$s\,f(k)$")
-axes[2].plot(kgrid, be_gn, label=r"$[(1+g)(1+n)-(1-\delta)]\,k$")
-axes[2].axvline(k_gn, ls="--", label=fr"$k^*={k_gn:.3f}$")
-axes[2].set_title("Solow — tech + pop growth")
-axes[2].set_xlabel(r"$k$ (capital per effective worker)")
-axes[2].set_ylabel("investment / break-even")
-axes[2].legend(loc="best")
+    # a. baseline: start in the steady state so all movement comes from the shock
+    baseline = SolowModelGrowth(T=T)
+    k_ss,y_ss,c_ss = baseline.steady_state()
+    baseline.K0 = k_ss*baseline.A0*baseline.L0 # K0 such that the economy starts in the steady state
 
-fig.tight_layout()
-plt.show()
+    sim_base = baseline.simulate()
 
-print(f"k* no growth = {k_ng:.6f},  k* tech = {k_g:.6f},  k* tech+pop = {k_gn:.6f}")
+    # b. scenario: population growth falls permanently in period t_switch
+    n_path = np.full(T,baseline.n)
+    n_path[t_switch:] = n_new
+
+    scenario = SolowModelGrowth(T=T,K0=baseline.K0)
+    sim_new = scenario.simulate(n=n_path)
+
+    # c. the new steady state
+    k_ss_new = SolowModelGrowth(n=n_new).steady_state()[0]
+
+    gain = sim_new.y_pw[-1]/sim_base.y_pw[-1]-1
+
+    print(f'population growth: {baseline.n:.3f} -> {n_new:.3f} in period {t_switch}')
+    print(f'steady state (per effective worker): k* = {k_ss:.4f} -> {k_ss_new:.4f}')
+    print(f'output per worker in the last period is {gain*100:.1f} percent higher than in the baseline')
+
+    # d. growth rates of output per worker
+    growth_base = sim_base.y_pw[1:]/sim_base.y_pw[:-1]-1
+    growth_new = sim_new.y_pw[1:]/sim_new.y_pw[:-1]-1
+
+    # e. figure
+    fig = plt.figure(figsize=(13,5))
+
+    # i. capital per effective worker
+    ax = fig.add_subplot(1,2,1)
+    ax.plot(sim_base.k,lw=2,color=colors[0],label='baseline')
+    ax.plot(sim_new.k,lw=2,color=colors[1],label=f'$n$ falls to {n_new:.2f}')
+    ax.axhline(k_ss,ls='--',lw=1.5,color='black',label='old steady state')
+    ax.axhline(k_ss_new,ls=':',lw=2,color='black',label='new steady state')
+    ax.set_title('Capital per effective worker')
+    ax.set_ylabel(r'$\tilde{k}_t$')
+    ax.legend(loc='lower right',fontsize=11)
+
+    # ii. growth in output per worker
+    ax = fig.add_subplot(1,2,2)
+    ax.plot(np.arange(1,T),growth_base,lw=2,color=colors[0],label='baseline')
+    ax.plot(np.arange(1,T),growth_new,lw=2,color=colors[1],label=f'$n$ falls to {n_new:.2f}')
+    ax.axhline(baseline.g,ls='--',lw=1.5,color='black',label=f'$g={baseline.g:.2f}$')
+    ax.set_title('Growth in output per worker')
+    ax.set_ylabel('growth rate')
+    ax.legend(loc='upper right',fontsize=11)
+
+    for ax in fig.axes:
+        ax.axvline(t_switch,lw=6,color='black',alpha=0.15,zorder=0)
+        ax.set_xlabel('period, $t$')
+        ax.set_xlim(0,T-1)
+
+    fig.suptitle('A permanent fall in population growth')
+    fig.tight_layout()
+    plt.show()
+
+    print('')
+    print('the fall in n gives a temporary boost to growth and a permanently higher')
+    print('level of output per worker - but in the long run growth is back at g.')
