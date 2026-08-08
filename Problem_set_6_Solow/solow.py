@@ -1,4 +1,9 @@
-# the Solow model from lecture 9 - use it as a template for your own model
+""" the Solow model from lecture 9
+
+The model class from the lecture notebook, collected in one file so it can be
+imported both there and in the problem set. Use it as a template for your own models.
+
+"""
 
 from types import SimpleNamespace
 from scipy import optimize
