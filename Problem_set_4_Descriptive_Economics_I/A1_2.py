@@ -1,1 +1,0 @@
-df_true['ratio'] = df_true['consumption']/df_true['income']
