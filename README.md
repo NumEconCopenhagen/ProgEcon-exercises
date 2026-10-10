@@ -4,5 +4,5 @@
 
 ## Current Problem Set
 
-- [Problem Set 01: Introduction and Getting Started](01_Introduction/Problem_set_01_Introduction_and_Getting_Started.ipynb)
+- [Problem Set 06: Optimization](06_Optimization/Problem_set_06_Optimization.ipynb)
 
