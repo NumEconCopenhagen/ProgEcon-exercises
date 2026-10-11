@@ -4,5 +4,5 @@
 
 ## Current Problem Set
 
-- [Problem Set 06: Optimization](06_Optimization/Problem_set_06_Optimization.ipynb)
+- [Problem Set 05: Printing and Plotting](05_Printing_and_Plotting/Problem_set_05_Printing_and_Plotting.ipynb)
 
